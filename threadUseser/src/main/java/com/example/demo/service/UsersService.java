@@ -6,7 +6,6 @@ import com.example.demo.respository.UserRepository;
 import com.example.demo.thread.UserRunnable;
 import com.example.demo.thread.UserRunnablePlus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -35,17 +34,17 @@ public class UsersService {
     public void autoSave(){
         System.out.println(usersQueue);
         ExecutorService service = Executors.newFixedThreadPool(5);
-            if (usersQueue.size()<200){
+            if (usersQueue.size()<2){
                 while (!usersQueue.isEmpty()){
                     service.submit(new UserRunnable(userRepository, usersQueue.poll()));
                     System.out.println(usersQueue);
                 }
             }
 
-            if (usersQueue.size() > 200){
+            if (usersQueue.size() > 2){
                 List<Users> usersList = new ArrayList<>();
                 synchronized (usersQueue){
-                    for (int i = 0; i <= 200 ; i++) {
+                    for (int i = 0; i <= 2 ; i++) {
                         usersList.add(usersQueue.poll());
                     }
                 }
