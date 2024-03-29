@@ -2,6 +2,7 @@ package com.example.demo.thread;
 
 import com.example.demo.entity.Users;
 import com.example.demo.respository.UserRepository;
+import com.example.demo.service.UsersService;
 import lombok.SneakyThrows;
 
 import java.util.List;
@@ -9,17 +10,20 @@ import java.util.List;
 public class UserRunnablePlus implements Runnable{
 
     private final UserRepository userRepository;
-    private List<Users> usersList;
 
-    public UserRunnablePlus(UserRepository userRepository, List<Users> usersList) {
+    public UserRunnablePlus(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.usersList = usersList;
     }
 
     @SneakyThrows
     @Override
     public void run(){
-        userRepository.saveAll(usersList);
+        synchronized (UsersService.usersQueue){
+            for (int i = 0; i < UsersService.MAX_SIZE; i++) {
+                UsersService.usersList.add(UsersService.usersQueue.poll());
+            }
+        }
+        userRepository.saveAll(UsersService.usersList);
         System.out.println(Thread.currentThread().getId());
         Thread.sleep(1000);
     }

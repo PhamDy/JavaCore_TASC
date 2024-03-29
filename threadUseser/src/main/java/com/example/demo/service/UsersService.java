@@ -20,7 +20,11 @@ import java.util.concurrent.*;
 @EnableScheduling
 public class UsersService {
 
-    private static Queue<Users> usersQueue = new ArrayDeque<>();
+    public static int MAX_SIZE = 200;
+
+    public static Queue<Users> usersQueue = new ArrayDeque<>();
+
+    public static List<Users> usersList = new ArrayList<>();
 
     @Autowired
     private UserRepository userRepository;
@@ -34,23 +38,13 @@ public class UsersService {
     public void autoSave(){
         System.out.println(usersQueue);
         ExecutorService service = Executors.newFixedThreadPool(5);
-            if (usersQueue.size()<200){
+            if (usersQueue.size()<MAX_SIZE){
                 while (!usersQueue.isEmpty()){
                     service.submit(new UserRunnable(userRepository, usersQueue.poll()));
                     System.out.println(usersQueue);
                 }
-            }
-
-            if (usersQueue.size() > 200){
-                List<Users> usersList = new ArrayList<>();
-                synchronized (usersQueue){
-                    for (int i = 0; i <= 2 ; i++) {
-                        usersList.add(usersQueue.poll());
-                    }
-                }
-                service.submit(new UserRunnablePlus(userRepository, usersList));
-                System.out.println(usersList);
-                usersList.clear();
+            } else {
+                service.submit(new UserRunnablePlus(userRepository));
             }
         }
 
