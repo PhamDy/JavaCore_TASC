@@ -35,14 +35,16 @@ public class UsersService {
     public void autoSave(){
         System.out.println(usersQueue);
         ExecutorService service = Executors.newFixedThreadPool(5);
-            while (!usersQueue.isEmpty() && usersQueue.size()<2){
+            while (!usersQueue.isEmpty() && usersQueue.size()<=200){
                 service.submit(new UserRunnable(userRepository, usersQueue.poll()));
                 System.out.println(usersQueue);
             }
-            if (usersQueue.size() > 2){
+            if (usersQueue.size() > 200){
                 List<Users> usersList = new ArrayList<>();
-                for (int i = 0; i <= 2 ; i++) {
-                    usersList.add(usersQueue.poll());
+                synchronized (usersQueue){
+                    for (int i = 0; i <= 200 ; i++) {
+                        usersList.add(usersQueue.poll());
+                    }
                 }
                 service.submit(new UserRunnablePlus(userRepository, usersList));
                 System.out.println(usersList);

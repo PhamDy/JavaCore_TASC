@@ -20,7 +20,7 @@ public class UserRunnablePlus implements Runnable{
     @Override
     public void run(){
         userRepository.saveAll(usersList);
-        System.out.println(Thread.currentThread().getName());
+        System.out.println(Thread.currentThread().getId());
         Thread.sleep(1000);
     }
 }
