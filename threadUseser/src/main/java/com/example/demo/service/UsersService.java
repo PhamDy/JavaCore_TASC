@@ -24,8 +24,6 @@ public class UsersService {
 
     public static Queue<Users> usersQueue = new ArrayDeque<>();
 
-    public static List<Users> usersList = new ArrayList<>();
-
     @Autowired
     private UserRepository userRepository;
 

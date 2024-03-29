@@ -5,6 +5,7 @@ import com.example.demo.respository.UserRepository;
 import com.example.demo.service.UsersService;
 import lombok.SneakyThrows;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRunnablePlus implements Runnable{
@@ -18,12 +19,11 @@ public class UserRunnablePlus implements Runnable{
     @SneakyThrows
     @Override
     public void run(){
-        synchronized (UsersService.usersQueue){
+        List<Users> usersList = new ArrayList<>();
             for (int i = 0; i < UsersService.MAX_SIZE; i++) {
-                UsersService.usersList.add(UsersService.usersQueue.poll());
+                usersList.add(UsersService.usersQueue.poll());
             }
-        }
-        userRepository.saveAll(UsersService.usersList);
+        userRepository.saveAll(usersList);
         System.out.println(Thread.currentThread().getId());
         Thread.sleep(1000);
     }
