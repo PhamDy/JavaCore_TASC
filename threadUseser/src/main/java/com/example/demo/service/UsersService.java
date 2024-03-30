@@ -18,7 +18,7 @@ import java.util.concurrent.*;
 @EnableScheduling
 public class UsersService {
 
-    public static int MAX_SIZE = 200;
+    public static int MAX_SIZE = 2;
 
     public static Queue<Users> usersQueue = new ArrayDeque<>();
 
@@ -40,6 +40,7 @@ public class UsersService {
                     System.out.println(usersQueue);
                 }
             } else {
+                service.submit(new UserRunnablePlus(userRepository));
                 service.submit(new UserRunnablePlus(userRepository));
             }
         }

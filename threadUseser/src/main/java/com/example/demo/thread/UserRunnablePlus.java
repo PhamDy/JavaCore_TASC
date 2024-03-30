@@ -21,6 +21,7 @@ public class UserRunnablePlus implements Runnable{
     public void run(){
         List<Users> usersList = new ArrayList<>();
             for (int i = 0; i < UsersService.MAX_SIZE; i++) {
+                if (!UsersService.usersQueue.isEmpty())
                 usersList.add(UsersService.usersQueue.poll());
             }
         userRepository.saveAll(usersList);
