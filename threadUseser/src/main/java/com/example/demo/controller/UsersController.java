@@ -12,12 +12,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class UsersController {
+
     @Autowired
     private UsersService usersService;
 
-    @PostMapping("/save")
-    public ResponseEntity<?> save(@Valid @RequestBody UserDto dto){
-        usersService.save(dto);
+    @PostMapping("/singlethread")
+    public ResponseEntity<?> saveSingleThread(@Valid @RequestBody UserDto dto){
+        usersService.saveSingleThread(dto);
+        return new ResponseEntity<>("Update successfully!", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/multithread")
+    public ResponseEntity<?> saveMultiThread(@Valid @RequestBody UserDto dto){
+        usersService.saveMultiThread(dto);
         return new ResponseEntity<>("Update successfully!", HttpStatus.CREATED);
     }
 

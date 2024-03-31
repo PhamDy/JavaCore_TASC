@@ -4,48 +4,80 @@ import com.example.demo.dto.UserDto;
 import com.example.demo.entity.Users;
 import com.example.demo.respository.UserRepository;
 import com.example.demo.thread.UserRunnable;
-import com.example.demo.thread.UserRunnablePlus;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.*;
 
 @Service
 @EnableScheduling
 public class UsersService {
 
-    public static int MAX_SIZE = 2;
+    public static int BATCH_SIZE = 200;
 
-    public static Queue<Users> usersQueue = new ArrayDeque<>();
+    public static final int NUM_THREAD = 3;
+
+    public static Queue<Users> usersQueueSingle = new ArrayDeque<>();
+
+    public static BlockingQueue<Users> usersQueueMulti = new LinkedBlockingQueue<>();
+
 
     @Autowired
     private UserRepository userRepository;
 
-    public void save(UserDto dto){
-        Users user = mapToEntity(dto);
-        usersQueue.add(user);
+    @PostConstruct
+    public void init() {
+        autoSaveMultiThread();
     }
 
-    @Scheduled(fixedDelay = 2000)
-    public void autoSave(){
-        System.out.println(usersQueue);
-        ExecutorService service = Executors.newFixedThreadPool(5);
-            if (usersQueue.size()<MAX_SIZE){
-                while (!usersQueue.isEmpty()){
-                    service.submit(new UserRunnable(userRepository, usersQueue.poll()));
-                    System.out.println(usersQueue);
-                }
-            } else {
-                service.submit(new UserRunnablePlus(userRepository));
-                service.submit(new UserRunnablePlus(userRepository));
-            }
-        }
+    public void saveSingleThread(UserDto dto) {
+        var user = mapToEntity(dto);
+        usersQueueSingle.offer(user);
+    }
 
-    public Users mapToEntity(UserDto dto){
+    public void saveMultiThread(UserDto dto) {
+        var user = mapToEntity(dto);
+        try {
+            usersQueueMulti.put(user);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Đơn tiến trình
+    @Scheduled(fixedDelay = 1000)
+    public void autoSaveSingleThread() {
+        System.out.println("start thread ..." + Thread.currentThread().getId());
+        if (usersQueueSingle.size()<BATCH_SIZE){
+            while (!usersQueueSingle.isEmpty()){
+                userRepository.save(usersQueueSingle.poll());
+            }
+        } else {
+            Users user;
+            List<Users> usersList = new ArrayList<>();
+            for (int i = 0; i < BATCH_SIZE; i++) {
+                user = usersQueueSingle.poll();
+                if (user!=null)
+                    usersList.add(user);
+            }
+            userRepository.saveAll(usersList);
+            System.out.println("Save successfully!");
+        }
+    }
+
+    // Đa tiến trình
+    public void autoSaveMultiThread() {
+        ExecutorService executorService = Executors.newFixedThreadPool(NUM_THREAD);
+        for (int i = 1; i <= NUM_THREAD; i++) {
+            executorService.submit(new UserRunnable(userRepository));
+        }
+    }
+
+    public Users mapToEntity(UserDto dto) {
         return Users.builder()
                 .name(dto.getName())
                 .age(dto.getAge())
