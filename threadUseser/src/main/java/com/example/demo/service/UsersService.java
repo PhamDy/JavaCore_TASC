@@ -49,9 +49,10 @@ public class UsersService {
     }
 
     // Đơn tiến trình
-    @Scheduled(fixedDelay = 1000)
+//    @Scheduled(fixedDelay = 2000)
     public void autoSaveSingleThread() {
         System.out.println("start thread ..." + Thread.currentThread().getId());
+        System.out.println(usersQueueSingle);
         if (usersQueueSingle.size()<BATCH_SIZE){
             while (!usersQueueSingle.isEmpty()){
                 userRepository.save(usersQueueSingle.poll());

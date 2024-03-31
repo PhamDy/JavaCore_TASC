@@ -38,7 +38,7 @@ public class UserRunnable implements Runnable {
                 userRepository.saveAll(usersList);
             }
             System.out.println(Thread.currentThread().getId() + " fineshed!");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         }
     }
 }

@@ -29,4 +29,11 @@ public class Users {
     @Column(name = "phone")
     private String phone;
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
