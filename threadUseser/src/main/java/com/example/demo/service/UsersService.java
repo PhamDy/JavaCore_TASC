@@ -49,7 +49,7 @@ public class UsersService {
     }
 
     // Đơn tiến trình
-//    @Scheduled(fixedDelay = 2000)
+    @Scheduled(fixedDelay = 2000)
     public void autoSaveSingleThread() {
         System.out.println("start thread ..." + Thread.currentThread().getId());
         System.out.println(usersQueueSingle);
