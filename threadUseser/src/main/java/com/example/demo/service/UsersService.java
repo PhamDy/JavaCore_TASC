@@ -25,7 +25,6 @@ public class UsersService {
 
     public static BlockingQueue<Users> usersQueueMulti = new LinkedBlockingQueue<>();
 
-
     @Autowired
     private UserRepository userRepository;
 
@@ -49,14 +48,16 @@ public class UsersService {
     }
 
     // Đơn tiến trình
-//    @Scheduled(fixedDelay = 2000)
+    @Scheduled(fixedDelay = 2000)
     public void autoSaveSingleThread() {
         System.out.println("start thread ..." + Thread.currentThread().getId());
         System.out.println(usersQueueSingle);
         if (usersQueueSingle.size()<BATCH_SIZE){
+            List<Users> usersList = new ArrayList<>();
             while (!usersQueueSingle.isEmpty()){
-                userRepository.save(usersQueueSingle.poll());
+                usersList.add(usersQueueSingle.poll());
             }
+            userRepository.saveAll(usersList);
         } else {
             Users user;
             List<Users> usersList = new ArrayList<>();
