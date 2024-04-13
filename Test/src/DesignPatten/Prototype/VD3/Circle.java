@@ -1,15 +1,15 @@
 package DesignPatten.Prototype.VD3;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
     public int radius;
 
-    public Circle(){
+    public Circle() {
 
     }
 
-    public Circle(Circle target){
+    public Circle(Circle target) {
         super(target);
-        if (target!=null){
+        if (target != null) {
             this.radius = target.radius;
         }
     }

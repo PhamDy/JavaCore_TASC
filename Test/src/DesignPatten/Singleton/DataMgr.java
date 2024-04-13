@@ -37,8 +37,8 @@ public class DataMgr {
         DataMgr.instance = instance;
     }
 
-    public static DataMgr getInstance(){
-        if (instance==null){
+    public static DataMgr getInstance() {
+        if (instance == null) {
             instance = new DataMgr();
         }
         return instance;

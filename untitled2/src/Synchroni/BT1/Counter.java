@@ -12,9 +12,9 @@ public class Counter {
         this.counter = counter;
     }
 
-    public synchronized void upCounter(){
-                this.counter++;
-                System.out.println(counter);
+    public synchronized void upCounter() {
+        this.counter++;
+        System.out.println(counter);
     }
 
 }

@@ -16,7 +16,7 @@ public class VeryComplex {
         this.sortAlgorithm = sortAlgorithm;
     }
 
-    public void complexBusiness(){
+    public void complexBusiness() {
         sortAlgorithm.sort();
     }
 

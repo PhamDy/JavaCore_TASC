@@ -1,6 +1,6 @@
 package Synchroni;
 
-public class ThreadSquare extends Thread{
+public class ThreadSquare extends Thread {
     ShareData shareData;
 
     public ThreadSquare(ShareData shareData) {
@@ -10,7 +10,7 @@ public class ThreadSquare extends Thread{
     @Override
     public synchronized void run() {
         for (int i = 0; i < 10; i++) {
-            synchronized (shareData){
+            synchronized (shareData) {
                 try {
                     shareData.notifyAll();
                     shareData.wait();

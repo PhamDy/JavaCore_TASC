@@ -16,11 +16,11 @@ public class Main {
 
             Method[] methods = clsSinhVien.getMethods();
 
-            for (Method method: methods
+            for (Method method : methods
             ) {
                 System.out.println(method.getName());
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex){
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
             System.out.println(ex);
         }
 

@@ -1,6 +1,6 @@
 package Collection;
 
-public class Book implements Comparable<Book>{
+public class Book implements Comparable<Book> {
     private int id;
     private String name, author, publisher;
     private int quantity;
@@ -20,9 +20,9 @@ public class Book implements Comparable<Book>{
 
     @Override
     public int compareTo(Book b) {
-        if (this.id > b.id){
+        if (this.id > b.id) {
             return 1;
-        } else if (this.id < b.id){
+        } else if (this.id < b.id) {
             return -1;
         } else {
             return 0;

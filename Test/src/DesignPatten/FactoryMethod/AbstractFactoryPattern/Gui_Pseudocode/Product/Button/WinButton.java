@@ -1,6 +1,6 @@
 package DesignPatten.FactoryMethod.AbstractFactoryPattern.Gui_Pseudocode.Product.Button;
 
-public class WinButton implements Button{
+public class WinButton implements Button {
 
     @Override
     public void createButton() {

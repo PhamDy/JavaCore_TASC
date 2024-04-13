@@ -18,8 +18,5 @@ public class SETCOLL {
         list.forEach(i -> System.out.println(i));
 
 
-
-
-
     }
 }

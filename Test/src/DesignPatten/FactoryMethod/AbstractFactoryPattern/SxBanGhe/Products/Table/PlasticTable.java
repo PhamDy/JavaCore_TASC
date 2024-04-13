@@ -1,6 +1,6 @@
 package DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Table;
 
-public class PlasticTable implements Table{
+public class PlasticTable implements Table {
 
     @Override
     public void createTable() {

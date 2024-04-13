@@ -22,8 +22,8 @@ public class UserRunnable implements Runnable {
         while (true) {
             System.out.println("start thread ... " + Thread.currentThread().getId());
             System.out.println(UsersService.usersQueueMulti);
-            if (UsersService.usersQueueMulti.size()<UsersService.BATCH_SIZE){
-                while (!UsersService.usersQueueMulti.isEmpty()){
+            if (UsersService.usersQueueMulti.size() < UsersService.BATCH_SIZE) {
+                while (!UsersService.usersQueueMulti.isEmpty()) {
                     userRepository.save(UsersService.usersQueueMulti.take());
                 }
             } else {
@@ -31,7 +31,7 @@ public class UserRunnable implements Runnable {
                 List<Users> usersList = new ArrayList<>();
                 for (int i = 0; i < UsersService.BATCH_SIZE; i++) {
                     user = UsersService.usersQueueMulti.take();
-                    if (user!=null){
+                    if (user != null) {
                         usersList.add(user);
                     }
                 }

@@ -7,8 +7,8 @@ public class Rectangle implements Shape {
         return "I am Rectangle";
     }
 
-    public double acreage(double a, double b){
-        return a*b;
+    public double acreage(double a, double b) {
+        return a * b;
     }
 
 }

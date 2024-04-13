@@ -1,6 +1,6 @@
 package DesignPatten.DependencyInjection.TightCoupling.VD3;
 
-public class MySqlDao implements AbstractDAO{
+public class MySqlDao implements AbstractDAO {
 
     @Override
     public void connect() {

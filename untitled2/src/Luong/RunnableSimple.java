@@ -1,6 +1,6 @@
 package Luong;
 
-public class RunnableSimple implements Runnable{
+public class RunnableSimple implements Runnable {
     @Override
     public void run() {
         System.out.println("Thread is running...");

@@ -1,6 +1,6 @@
 package DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Table;
 
-public class WoodTable implements Table{
+public class WoodTable implements Table {
 
     @Override
     public void createTable() {

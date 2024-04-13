@@ -1,16 +1,16 @@
 package DesignPatten.Prototype.VD3;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     public int width;
     public int height;
 
-    public Rectangle(){
+    public Rectangle() {
 
     }
 
-    public Rectangle(Rectangle target){
+    public Rectangle(Rectangle target) {
         super(target);
-        if (target!=null){
+        if (target != null) {
             this.width = target.width;
             this.height = target.height;
         }

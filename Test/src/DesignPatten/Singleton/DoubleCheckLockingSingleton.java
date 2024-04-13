@@ -7,10 +7,10 @@ public class DoubleCheckLockingSingleton {
     private DoubleCheckLockingSingleton() {
     }
 
-    public static DoubleCheckLockingSingleton getInstance(){
-        if (instance==null){
-            synchronized (DoubleCheckLockingSingleton.class){
-                if (instance==null){
+    public static DoubleCheckLockingSingleton getInstance() {
+        if (instance == null) {
+            synchronized (DoubleCheckLockingSingleton.class) {
+                if (instance == null) {
                     instance = new DoubleCheckLockingSingleton();
                 }
             }

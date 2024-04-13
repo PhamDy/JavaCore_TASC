@@ -5,14 +5,14 @@ import java.util.UUID;
 
 public class OngdevSingleton {
 
-//    private static final Object lock = new Object();
+    //    private static final Object lock = new Object();
     private static OngdevSingleton uniqueInstance = new OngdevSingleton();
 
-    private OngdevSingleton(){
+    private OngdevSingleton() {
 //        System.out.println(UUID.randomUUID().toString());
     }
 
-    public static OngdevSingleton getInstance(){
+    public static OngdevSingleton getInstance() {
 //        if (uniqueInstance==null){
 //            synchronized (lock) {
 //                if (uniqueInstance==null){
@@ -23,7 +23,7 @@ public class OngdevSingleton {
         return uniqueInstance;
     }
 
-    public void SayHi(){
+    public void SayHi() {
         System.out.println("Hello world! I am " + UUID.randomUUID().toString());
     }
 

@@ -1,6 +1,6 @@
 package Luong;
 
-public class ThreadDemo extends Thread{
+public class ThreadDemo extends Thread {
     private Thread t;
     private String threadName;
 
@@ -13,19 +13,19 @@ public class ThreadDemo extends Thread{
     public void run() {
         System.out.println("Running " + threadName);
         try {
-            for (int i = 4; i > 0 ; i--) {
+            for (int i = 4; i > 0; i--) {
                 System.out.println("Thread: " + threadName + ", " + i);
                 Thread.sleep(50);
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println("Thread " + threadName + "interrupted.");
         }
         System.out.println("Thread " + threadName);
     }
 
-    public void start(){
+    public void start() {
         System.out.println("Starting " + threadName);
-        if (t==null){
+        if (t == null) {
             t = new Thread(this, threadName);
             t.start();
         }

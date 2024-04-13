@@ -10,8 +10,8 @@ public abstract class Shape {
     public Shape() {
     }
 
-    public Shape(Shape target){
-        if (target!=null){
+    public Shape(Shape target) {
+        if (target != null) {
             this.x = target.x;
             this.y = target.y;
             this.color = target.color;

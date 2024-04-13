@@ -1,6 +1,6 @@
 package DesignPatten.DependencyInjection.TightCoupling.VD2;
 
-public class Naked implements Outfit{
+public class Naked implements Outfit {
 
     @Override
     public void wear() {

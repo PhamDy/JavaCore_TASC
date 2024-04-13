@@ -1,6 +1,6 @@
 package DesignPatten.FactoryMethod.AbstractFactoryPattern.Gui_Pseudocode.Product.Button;
 
-public class MacButton implements Button{
+public class MacButton implements Button {
 
     @Override
     public void createButton() {

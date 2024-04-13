@@ -1,6 +1,6 @@
 package DesignPatten.Prototype.VD1;
 
-public class Computer implements Cloneable{
+public class Computer implements Cloneable {
     private String os;
     private String office;
     private String antivirus;
@@ -24,7 +24,7 @@ public class Computer implements Cloneable{
     }
 
     @Override
-    protected Computer clone() throws CloneNotSupportedException{
+    protected Computer clone() throws CloneNotSupportedException {
         Computer computer = (Computer) super.clone();
         computer.employee = this.employee.clone();
         return computer;
@@ -43,7 +43,7 @@ public class Computer implements Cloneable{
                 '}';
     }
 
-    public void setOthers(String others){
+    public void setOthers(String others) {
         this.others = others;
     }
 

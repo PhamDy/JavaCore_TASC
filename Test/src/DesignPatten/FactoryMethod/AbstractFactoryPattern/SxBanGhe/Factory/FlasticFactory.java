@@ -5,7 +5,7 @@ import DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Chair
 import DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Table.PlasticTable;
 import DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Table.Table;
 
-public class FlasticFactory extends FurnitureAbstractFactory{
+public class FlasticFactory extends FurnitureAbstractFactory {
 
     @Override
     public Chair createChair() {

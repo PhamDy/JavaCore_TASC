@@ -4,6 +4,7 @@ import DesignPatten.FactoryMethod.AbstractFactoryPattern.Gui_Pseudocode.Product.
 import DesignPatten.FactoryMethod.AbstractFactoryPattern.Gui_Pseudocode.Product.Checkbox.Checkbox;
 
 public interface GuiInterfaceFactory {
-        Button createButton();
-        Checkbox createCheckBox();
+    Button createButton();
+
+    Checkbox createCheckBox();
 }

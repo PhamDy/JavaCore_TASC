@@ -52,9 +52,9 @@ public class UsersService {
     public void autoSaveSingleThread() {
         System.out.println("start thread ..." + Thread.currentThread().getId());
         System.out.println(usersQueueSingle);
-        if (usersQueueSingle.size()<BATCH_SIZE){
+        if (usersQueueSingle.size() < BATCH_SIZE) {
             List<Users> usersList = new ArrayList<>();
-            while (!usersQueueSingle.isEmpty()){
+            while (!usersQueueSingle.isEmpty()) {
                 usersList.add(usersQueueSingle.poll());
             }
             userRepository.saveAll(usersList);
@@ -63,7 +63,7 @@ public class UsersService {
             List<Users> usersList = new ArrayList<>();
             for (int i = 0; i < BATCH_SIZE; i++) {
                 user = usersQueueSingle.poll();
-                if (user!=null)
+                if (user != null)
                     usersList.add(user);
             }
             userRepository.saveAll(usersList);

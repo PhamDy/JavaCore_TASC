@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
         Thread thread1 = new Thread(() -> {
-           BillPughSingleton.getInstance();
+            BillPughSingleton.getInstance();
         });
 
         Thread thread2 = new Thread(() -> {

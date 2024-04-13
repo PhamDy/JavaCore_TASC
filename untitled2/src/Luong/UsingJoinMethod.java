@@ -1,6 +1,6 @@
 package Luong;
 
-public class UsingJoinMethod extends Thread{
+public class UsingJoinMethod extends Thread {
     public UsingJoinMethod(String name) {
         super(name);
     }
@@ -8,18 +8,18 @@ public class UsingJoinMethod extends Thread{
     @Override
     public void run() {
         System.out.println(getName());
-        for (int i = 1; i <=5; i++) {
+        for (int i = 1; i <= 5; i++) {
             try {
                 System.out.println(i + " ");
                 Thread.sleep(300);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 System.out.println(e.toString());
             }
         }
         System.out.println();
     }
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         UsingJoinMethod t1 = new UsingJoinMethod("Thread 1");
         UsingJoinMethod t2 = new UsingJoinMethod("Thread 2");
         t1.start();

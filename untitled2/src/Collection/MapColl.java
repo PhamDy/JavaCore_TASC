@@ -15,14 +15,12 @@ public class MapColl {
         list.put(s2.getId(), s2);
         list.put(s3.getId(), s3);
 
-        for (Map.Entry<Integer, Student> map: list.entrySet()
-             ) {
-            if (map.getValue()== s1){
+        for (Map.Entry<Integer, Student> map : list.entrySet()
+        ) {
+            if (map.getValue() == s1) {
                 System.out.println(map.getKey() + " = " + map.getValue());
             }
         }
-
-
 
 
     }

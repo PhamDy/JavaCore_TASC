@@ -49,7 +49,7 @@ public class Product {
         this.price = price;
     }
 
-    public void getList(){
+    public void getList() {
         List<Product> products = DataMgr.getInstance().getProducts();
         System.out.println(products);
     }

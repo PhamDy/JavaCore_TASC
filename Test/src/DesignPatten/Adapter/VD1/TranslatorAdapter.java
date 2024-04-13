@@ -1,6 +1,6 @@
 package DesignPatten.Adapter.VD1;
 
-public class TranslatorAdapter implements VietnameseTarget{
+public class TranslatorAdapter implements VietnameseTarget {
 
     private JapaneseAdaptee adaptee;
 
@@ -17,7 +17,7 @@ public class TranslatorAdapter implements VietnameseTarget{
         adaptee.receive(vietnameseWords);
     }
 
-    private String translate(String vietnameseWords){
+    private String translate(String vietnameseWords) {
         System.out.println("Translated!");
         return "こんにちは";
     }

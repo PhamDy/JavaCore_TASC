@@ -7,13 +7,13 @@ public class Customer {
         System.out.println("Tài khoản của bạn là: " + balance);
     }
 
-    public synchronized void withdraw(int amount){
+    public synchronized void withdraw(int amount) {
         System.out.println("Đang thực hiện giao dịch rút tiền" + amount + "...");
-        while (balance<amount){
+        while (balance < amount) {
             System.out.println("Không đủ tiền rút");
             try {
                 wait();
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 System.out.println(e.toString());
             }
         }
@@ -21,7 +21,7 @@ public class Customer {
         System.out.println("Rút tiền thành công. Tài khoản của bạn hiện tại là " + balance);
     }
 
-    public synchronized void deposit(int amount){
+    public synchronized void deposit(int amount) {
         System.out.println("Đang thực hiện giao dịch nạp tiền" + amount + "...");
         balance += amount;
         System.out.println("Nạp tiền thành công. Tài khoản của bạn hiện tại là " + balance);

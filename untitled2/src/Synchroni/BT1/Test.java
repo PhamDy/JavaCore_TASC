@@ -10,7 +10,6 @@ public class Test {
         });
 
 
-
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 5; i++) {
                 counter.upCounter();

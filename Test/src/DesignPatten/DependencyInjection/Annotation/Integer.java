@@ -7,6 +7,4 @@ public final class Integer {
     public static final int MIN_VALUE = 1;
 
 
-
-
 }

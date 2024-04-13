@@ -1,6 +1,6 @@
 package DesignPatten.FactoryMethod.AbstractFactoryPattern.Gui_Pseudocode.Product.Checkbox;
 
-public class MacCheckbox implements Checkbox{
+public class MacCheckbox implements Checkbox {
 
     @Override
     public void createCheckbox() {

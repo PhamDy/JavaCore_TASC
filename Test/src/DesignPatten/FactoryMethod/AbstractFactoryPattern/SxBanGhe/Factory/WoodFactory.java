@@ -5,7 +5,7 @@ import DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Chair
 import DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Table.Table;
 import DesignPatten.FactoryMethod.AbstractFactoryPattern.SxBanGhe.Products.Table.WoodTable;
 
-public class WoodFactory extends FurnitureAbstractFactory{
+public class WoodFactory extends FurnitureAbstractFactory {
 
     @Override
     public Chair createChair() {

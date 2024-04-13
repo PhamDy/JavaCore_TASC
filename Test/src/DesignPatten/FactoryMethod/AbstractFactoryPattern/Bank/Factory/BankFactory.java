@@ -6,12 +6,12 @@ import DesignPatten.FactoryMethod.AbstractFactoryPattern.Bank.Class.VietcomBank;
 
 public class BankFactory {
 
-    private BankFactory(){
+    private BankFactory() {
 
     }
 
-    public static final Bank getBank(BankType bankType){
-        switch (bankType){
+    public static final Bank getBank(BankType bankType) {
+        switch (bankType) {
 
             case TPBank:
                 return new TpBank();

@@ -15,11 +15,11 @@ public class Main {
         });
 
         Thread t2 = new Thread(() -> {
-            danhSach.update(new Student(2,"test"));
+            danhSach.update(new Student(2, "test"));
         });
 
         Thread t3 = new Thread(() -> {
-           danhSach.getDs(2);
+            danhSach.getDs(2);
         });
 
         t1.start();

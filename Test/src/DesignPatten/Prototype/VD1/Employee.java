@@ -1,6 +1,6 @@
 package DesignPatten.Prototype.VD1;
 
-public class Employee implements Cloneable{
+public class Employee implements Cloneable {
     int id;
     String name;
 

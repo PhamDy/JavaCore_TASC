@@ -1,12 +1,12 @@
 package Luong;
 
-public class ThreadSimple extends Thread{
+public class ThreadSimple extends Thread {
 
-    public void run(){
+    public void run() {
         System.out.println("thread is running ...");
     }
 
-    public void test(){
+    public void test() {
         System.out.println("Test");
     }
 

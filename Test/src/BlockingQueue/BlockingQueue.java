@@ -8,7 +8,7 @@ public class BlockingQueue<T> {
     private final LinkedList<T> items = new LinkedList<>();
 
     public synchronized void put(T value) throws InterruptedException {
-        while (items.size()==compacity){
+        while (items.size() == compacity) {
             System.out.println("Queue is full");
             wait();
         }
@@ -16,7 +16,7 @@ public class BlockingQueue<T> {
     }
 
     public synchronized T take() throws InterruptedException {
-        while (items.size()==0){
+        while (items.size() == 0) {
             System.out.println("Queue is empty");
             wait();
         }
@@ -24,7 +24,7 @@ public class BlockingQueue<T> {
         return items.removeFirst();
     }
 
-    public synchronized int size(){
+    public synchronized int size() {
         return items.size();
     }
 }

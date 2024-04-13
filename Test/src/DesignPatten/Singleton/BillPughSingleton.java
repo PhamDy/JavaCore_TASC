@@ -8,7 +8,7 @@ public class BillPughSingleton {
         System.out.println(UUID.randomUUID().toString());
     }
 
-    public static BillPughSingleton getInstance(){
+    public static BillPughSingleton getInstance() {
         return SingletonHelper.instance;
     }
 

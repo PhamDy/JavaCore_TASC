@@ -40,6 +40,6 @@ public class QUEUE {
             System.out.println(queue.poll());
         }
 
-    Queue<String> strings = new LinkedList<>();
+        Queue<String> strings = new LinkedList<>();
     }
 }

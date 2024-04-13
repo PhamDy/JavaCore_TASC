@@ -1,6 +1,6 @@
 package DesignPatten.FactoryMethod.AbstractFactoryPattern.Gui_Pseudocode.Product.Checkbox;
 
-public class WinCheckbox implements Checkbox{
+public class WinCheckbox implements Checkbox {
 
     @Override
     public void createCheckbox() {

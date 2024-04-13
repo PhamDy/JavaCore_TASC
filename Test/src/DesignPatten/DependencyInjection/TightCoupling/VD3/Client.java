@@ -8,7 +8,7 @@ public class Client {
         this.dao = Utils.getDAO();
     }
 
-    public void execute(){
+    public void execute() {
         dao.connect();
     }
 

@@ -14,25 +14,25 @@ public class DanhSach {
         this.list = list;
     }
 
-    public synchronized void getDs(int id){
-        System.out.println("Student " + id );
+    public synchronized void getDs(int id) {
+        System.out.println("Student " + id);
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).id==id){
+            if (list.get(i).id == id) {
                 System.out.println(list.get(i).toString());
             }
         }
     }
 
-    public synchronized void addStudent(Student student){
+    public synchronized void addStudent(Student student) {
         list.add(student);
         System.out.println("Đã thêm thành công");
         System.out.println(list.toString());
         System.out.println(list.size());
     }
 
-    public synchronized void update(Student student){
+    public synchronized void update(Student student) {
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).id==student.id){
+            if (list.get(i).id == student.id) {
                 list.get(i).name = student.name;
             }
         }
@@ -41,9 +41,9 @@ public class DanhSach {
 
     }
 
-    public void delete(int id){
+    public void delete(int id) {
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).id == id){
+            if (list.get(i).id == id) {
                 list.remove(i);
             }
         }

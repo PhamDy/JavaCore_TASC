@@ -7,7 +7,7 @@ public class Girl {
         this.outfit = outfit;
     }
 
-    public void showOutfit(){
+    public void showOutfit() {
         outfit.wear();
     }
 
