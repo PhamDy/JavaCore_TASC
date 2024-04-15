@@ -84,13 +84,14 @@ public class UsersJdbcTemplate implements UsersDAO{
 
     public int updateUserName(String name, int id){
         String sql = "UPDATE users SET name = ? WHERE id = ?";
-        return jdbcTemplate.update(sql, new PreparedStatementSetter() {
-            @Override
-            public void setValues(PreparedStatement ps) throws SQLException {
-                ps.setString(1, name);
-                ps.setInt(2, id);
-            }
-        });
+//        return jdbcTemplate.update(sql, new PreparedStatementSetter() {
+//            @Override
+//            public void setValues(PreparedStatement ps) throws SQLException {
+//                ps.setString(1, name);
+//                ps.setInt(2, id);
+//            }
+//        });
+        return jdbcTemplate.update(sql, name, id);
     }
 
     public int deleteUserById(int id){

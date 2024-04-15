@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.entity.Address;
 import com.example.demo.entity.Users;
 import com.example.demo.repository.UsersDAO;
+import com.example.demo.repository.UsersNamedJdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,8 @@ public class UsersService {
     }
 
     public int deleteUserById(int id){
+        var i = (UsersNamedJdbcTemplate) usersRepository;
+        i.tets();
         return usersRepository.deleteUserById(id);
     }
 

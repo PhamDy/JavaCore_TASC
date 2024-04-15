@@ -99,4 +99,9 @@ public class UsersNamedJdbcTemplate implements UsersDAO{
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("id", id);
         return namedJdbcTemplate.update(sql, parameterSource);
     }
+
+    public void tets(){
+        System.out.println("abc");
+    }
+
 }
