@@ -23,6 +23,7 @@ public class HibernateUtil {
         properties.put(Environment.URL, "jdbc:mysql://localhost:3306/hibernate");
         properties.put(Environment.USER, "root");
         properties.put(Environment.PASS, "");
+//        properties.put(Environment.SHOW_SQL, "true");
         configuration.setProperties(properties);
 
         configuration.addAnnotatedClass(Category.class);
@@ -32,7 +33,7 @@ public class HibernateUtil {
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                                     .applySettings(configuration.getProperties()).build();
 
-        FACTORY = configuration.buildSessionFactory();
+        FACTORY = configuration.buildSessionFactory(registry);
     }
 
     public static SessionFactory getSessionFactory(){

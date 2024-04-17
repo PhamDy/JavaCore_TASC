@@ -15,7 +15,7 @@ public class Products implements Serializable {
     private String description;
     private double price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -77,5 +77,16 @@ public class Products implements Serializable {
 
     public void setManufacturers(Set<Manufacturer> manufacturers) {
         this.manufacturers = manufacturers;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                '}';
     }
 }
