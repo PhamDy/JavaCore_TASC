@@ -1,11 +1,14 @@
 package com.DyPham.OrderService.service;
 
+import brave.messaging.ProducerResponse;
 import com.DyPham.OrderService.entity.Order;
 import com.DyPham.OrderService.exception.CustomException;
 import com.DyPham.OrderService.exception.OrderNotFoundException;
 import com.DyPham.OrderService.external.client.PaymentService;
 import com.DyPham.OrderService.external.client.ProductService;
 import com.DyPham.OrderService.external.request.PaymentRequest;
+import com.DyPham.OrderService.external.response.PaymentResponse;
+import com.DyPham.OrderService.external.response.ProductResponse;
 import com.DyPham.OrderService.model.OrderRequest;
 import com.DyPham.OrderService.model.OrderResponse;
 import com.DyPham.OrderService.repository.OrderRepository;
@@ -93,7 +96,33 @@ public class OrderServiceImpl implements OrderService{
         );
 
         log.info("Invoking Product service to fetch the product for id: {}", order.getProductId());
-        Produ
+        ProductResponse productResponse = restTemplate.getForObject(
+                "http://Product-Service/product/" + order.getProductId(),
+                ProductResponse.class
+        );
+
+        log.info("Getting payment information form the payment Service");
+
+        PaymentResponse paymentResponse = restTemplate.getForObject(
+                "http://Payment-Service/payment/order/" + order.getId(),
+                PaymentResponse.class
+        );
+
+        OrderResponse.ProductDetails productDetails = OrderResponse.ProductDetails
+                .builder()
+                .name(productResponse.getName())
+                .id(productResponse.getId())
+                .price(productResponse.getPrice())
+                .quantity(productResponse.getQuantity())
+                .build();
+
+        OrderResponse.PaymentDetails paymentDetails = OrderResponse.PaymentDetails
+                .builder()
+                .paymentId(paymentResponse.getPaymentId())
+                .status(paymentResponse.getStatus())
+                .paymentDate(paymentResponse.getPaymentDate())
+                .paymentMode(paymentResponse.getPaymentMode())
+                .build();
 
 
         OrderResponse orderResponse
@@ -102,6 +131,8 @@ public class OrderServiceImpl implements OrderService{
                 .orderStatus(order.getOrderStatus())
                 .amount(order.getAmount())
                 .orderDate(order.getOrderDate())
+                .productDetails(productDetails)
+                .paymentDetails(paymentDetails)
                 .build();
 
         return orderResponse;

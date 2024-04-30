@@ -1,7 +1,10 @@
 package com.DyPham.PaymentService.service;
 
 import com.DyPham.PaymentService.entity.TransactionDetails;
+import com.DyPham.PaymentService.exception.PaymentNotFoundByOrderId;
+import com.DyPham.PaymentService.model.PaymentMode;
 import com.DyPham.PaymentService.model.PaymentRequest;
+import com.DyPham.PaymentService.model.PaymentResponse;
 import com.DyPham.PaymentService.repository.PaymentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ public class PaymentServiceImpl implements PaymentService{
 
     @Autowired
     private PaymentRepository paymentRepository;
+
     @Override
     public long doPayment(PaymentRequest paymentRequest) {
         log.info("Recording Payment Details: {}", paymentRequest);
@@ -31,4 +35,26 @@ public class PaymentServiceImpl implements PaymentService{
         log.info("Transaction Conpleted with Id: {}", transactionDetails.getId());
         return transactionDetails.getId();
     }
+
+    @Override
+    public PaymentResponse getPaymentDetailsByOrderId(long orderId) {
+        log.info("Getting payment details for the Order Id: {}", orderId);
+        TransactionDetails transactionDetails = paymentRepository.findByOrderId(orderId);
+        if (transactionDetails == null){
+            throw new PaymentNotFoundByOrderId("Payment by orderId not foung");
+        }
+
+        PaymentResponse paymentResponse = PaymentResponse
+                .builder()
+                .paymentId(transactionDetails.getId())
+                .paymentMode(PaymentMode.valueOf(transactionDetails.getPaymentMode()))
+                .paymentDate(transactionDetails.getPaymentDate())
+                .orderId(transactionDetails.getOrderId())
+                .status(transactionDetails.getPaymentStatus())
+                .amount(transactionDetails.getAmount())
+                .build();
+
+        return paymentResponse;
+    }
+
 }

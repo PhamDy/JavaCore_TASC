@@ -5,6 +5,17 @@ import React from 'react';
 import Member from './components/Member'
 import Comment from './components/Comment';
 import Post from './components/Post';
+import Even01 from './components/events/Event01';
+import Event02 from './components/events/Event02';
+import Customer from './components/state/Customer';
+import Counter from './components/state/Counter';
+import Toggle from './components/state/Toggle';
+import Form from './components/state/Form';
+import Validate from './components/state/Validate';
+
+const validate = new Validate();
+
+console.log(validate);
 
 function App() {
 
@@ -99,12 +110,14 @@ function App() {
       );  
   })
 
+  const customerInfor = {
+    name: 'Hoàng An',
+    email: 'hoangan@gmail.com'
+  }
+
   return (
-    
     <>
-    {/* //   <Member name={info.name} age={info.age} shippingAddress={info.shippingAddress}
-    //   comment={<Comment content={comment.content} title={comment.title} />} /> */}
-    {memberList}
+      <Form/>
     </>
   );
 }
