@@ -6,10 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @Slf4j
 public class CustomErrorDecoder implements ErrorDecoder {
