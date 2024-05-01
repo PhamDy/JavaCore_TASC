@@ -23,11 +23,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login(
             @AuthenticationPrincipal OidcUser oidcUser,
             Model model,
-            @RegisteredOAuth2AuthorizedClient("okta") OAuth2AuthorizedClient client
-    ){
+            @RegisteredOAuth2AuthorizedClient("okta")
+                    OAuth2AuthorizedClient client
+    ) {
         AuthenticationResponse authenticationResponse
-                = AuthenticationResponse
-                .builder()
+                = AuthenticationResponse.builder()
                 .userId(oidcUser.getEmail())
                 .accessToken(client.getAccessToken().getTokenValue())
                 .refreshToken(client.getRefreshToken().getTokenValue())
