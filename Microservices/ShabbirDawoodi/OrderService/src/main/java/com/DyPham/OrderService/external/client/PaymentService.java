@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @CircuitBreaker(name = "external", fallbackMethod = "fallback")
-@FeignClient(name = "Payment-Service/payment")
+@FeignClient(name = "PAYMENT-SERVICE/payment")
 public interface PaymentService {
     @PostMapping
     ResponseEntity<?> doPayment(@RequestBody PaymentRequest paymentRequest);
 
-    default void fallback(Exception e) {
+    default ResponseEntity<Long> fallback(Exception e) {
         throw new CustomException("Payment Service is not available");
     }
 

@@ -83,8 +83,6 @@ public class OrderServiceImpl implements OrderService{
 
         log.info("Order Places successfully with Order Id: {}", order.getId());
 
-
-
         return order.getId();
     }
 
@@ -97,14 +95,14 @@ public class OrderServiceImpl implements OrderService{
 
         log.info("Invoking Product service to fetch the product for id: {}", order.getProductId());
         ProductResponse productResponse = restTemplate.getForObject(
-                "http://Product-Service/product/" + order.getProductId(),
+                "http://PRODUCT-SERVICE/product/" + order.getProductId(),
                 ProductResponse.class
         );
 
         log.info("Getting payment information form the payment Service");
 
         PaymentResponse paymentResponse = restTemplate.getForObject(
-                "http://Payment-Service/payment/order/" + order.getId(),
+                "http://PAYMENT-SERVICE/payment/order/" + order.getId(),
                 PaymentResponse.class
         );
 

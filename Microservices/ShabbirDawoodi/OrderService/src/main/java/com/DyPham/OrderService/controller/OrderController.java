@@ -1,6 +1,5 @@
 package com.DyPham.OrderService.controller;
 
-import com.DyPham.OrderService.external.client.PaymentService;
 import com.DyPham.OrderService.model.OrderRequest;
 import com.DyPham.OrderService.model.OrderResponse;
 import com.DyPham.OrderService.service.OrderService;
@@ -19,7 +18,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PreAuthorize("hasAnyAuthority('Customer')")
+    @PreAuthorize("hasAuthority('Customer')")
     @PostMapping("/placeOrder")
     public ResponseEntity<?> placeOrder(@RequestBody OrderRequest orderRequest){
         long orderId = orderService.placeOrder(orderRequest);
@@ -27,7 +26,7 @@ public class OrderController {
         return new ResponseEntity<>(orderId, HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('Admin') || hasAnyAuthority('Customer')")
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
     @GetMapping("/{orderId}")
     public ResponseEntity<?> getOrderDetails(@PathVariable long orderId){
         OrderResponse orderResponse = orderService.getOrderDetails(orderId);

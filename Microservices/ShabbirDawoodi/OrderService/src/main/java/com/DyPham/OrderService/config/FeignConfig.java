@@ -1,4 +1,4 @@
-package com.DyPham.OrderService.external.config;
+package com.DyPham.OrderService.config;
 
 import com.DyPham.OrderService.external.decoder.CustomErrorDecoder;
 import feign.codec.ErrorDecoder;

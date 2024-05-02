@@ -14,14 +14,15 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeRequests(authorizeRequest -> authorizeRequest
-                        .anyRequest()
-                            .authenticated())
+    public SecurityFilterChain securityWebFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests(
+                        authorizeRequest -> authorizeRequest
+                                .anyRequest()
+                                .authenticated())
                 .oauth2ResourceServer(
                         OAuth2ResourceServerConfigurer::jwt);
-        return httpSecurity.build();
-    }
 
+        return http.build();
+    }
 }

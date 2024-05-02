@@ -16,14 +16,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PreAuthorize("hasAnyAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestBody ProductRequest productRequest){
         long productId = productService.addProduct(productRequest);
         return new ResponseEntity<>(productId, HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('Admin') || hasAnyAuthority('Customer') || hasAnyAuthority('SCOPE_internal')")
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductId(@PathVariable("id") long id){
         ProductResponse productResponse = productService.getProductById(id);

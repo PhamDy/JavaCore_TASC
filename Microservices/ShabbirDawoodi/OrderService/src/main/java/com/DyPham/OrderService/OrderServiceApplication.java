@@ -21,6 +21,7 @@ import java.util.Arrays;
 @EnableFeignClients
 public class OrderServiceApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
 	}
@@ -33,15 +34,14 @@ public class OrderServiceApplication {
 
 	@Bean
 	@LoadBalanced
-	public RestTemplate restTemplate(){
-		RestTemplate restTemplate = new RestTemplate();
+	public RestTemplate restTemplate() {
+		RestTemplate restTemplate
+				= new RestTemplate();
 		restTemplate.setInterceptors(
 				Arrays.asList(
 						new RestTemplateInterceptor(
-								clientManager(clientRegistrationRepository, oAuth2AuthorizedClientRepository)
-						)
-				)
-		);
+								clientManager(clientRegistrationRepository
+										,oAuth2AuthorizedClientRepository))));
 		return restTemplate;
 	}
 
@@ -49,7 +49,7 @@ public class OrderServiceApplication {
 	public OAuth2AuthorizedClientManager clientManager(
 			ClientRegistrationRepository clientRegistrationRepository,
 			OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository
-	){
+	) {
 		OAuth2AuthorizedClientProvider oAuth2AuthorizedClientProvider
 				= OAuth2AuthorizedClientProviderBuilder
 				.builder()
@@ -58,14 +58,13 @@ public class OrderServiceApplication {
 
 		DefaultOAuth2AuthorizedClientManager oAuth2AuthorizedClientManager
 				= new DefaultOAuth2AuthorizedClientManager(
-						clientRegistrationRepository,
-						oAuth2AuthorizedClientRepository
-		);
+				clientRegistrationRepository,
+				oAuth2AuthorizedClientRepository);
+
 		oAuth2AuthorizedClientManager.setAuthorizedClientProvider(
 				oAuth2AuthorizedClientProvider
 		);
 
 		return oAuth2AuthorizedClientManager;
 	}
-
 }
