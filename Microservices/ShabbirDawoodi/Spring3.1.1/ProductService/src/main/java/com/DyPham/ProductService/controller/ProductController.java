@@ -17,9 +17,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-//    @PreAuthorize("hasAuthority('Admin')")ROLE_Customer
-    @Secured("ROLE_Admin")
-    @PostMapping("/private")
+//    @PreAuthorize("hasAuthority('Admin')")
+//    @Secured({"Admin"})
+    @PostMapping("/private/addProduct")
     public ResponseEntity<?> addProduct(@RequestBody ProductRequest productRequest){
         long productId = productService.addProduct(productRequest);
         return new ResponseEntity<>(productId, HttpStatus.CREATED);
