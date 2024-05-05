@@ -1,6 +1,6 @@
 package com.DyPham.ProductService.security;
 
-import com.DyPham.ProductService.exception.InvalidTokenException;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +25,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Slf4j
-@Component
+//@Component
 public class JwtFilter extends OncePerRequestFilter {
 
     @Override
@@ -45,7 +45,7 @@ public class JwtFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 log.info("User details" + userDetails);
-            } catch (InvalidTokenException exception){
+            } catch (JwtException exception){
                 log.error("Token invalid: {}", exception.getMessage());
             } catch (Exception exception) {
                 log.error("Error null invalition do token: {}", exception.getMessage());
@@ -80,8 +80,8 @@ public class JwtFilter extends OncePerRequestFilter {
         JsonNode jsonNode = objectMapper.readTree(payload);
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if (jsonNode.has("group")) {
-            JsonNode groupNode = jsonNode.get("group");
+        if (jsonNode.has("groups")) {
+            JsonNode groupNode = jsonNode.get("groups");
             if (groupNode.isArray()) {
                 for (final JsonNode node : groupNode) {
                     authorities.add(new SimpleGrantedAuthority(node.asText()));

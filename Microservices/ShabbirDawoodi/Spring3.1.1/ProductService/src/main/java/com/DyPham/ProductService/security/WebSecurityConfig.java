@@ -21,16 +21,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Slf4j
 public class WebSecurityConfig {
 
-    @Autowired
-    private JwtFilter jwtFilter;
+//    @Autowired
+//    private JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityWebFilterChain(HttpSecurity http) throws Exception {
         http
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(
                         authorizeRequest -> authorizeRequest
-                                .requestMatchers("/product/private/**").hasAuthority("Admin")
+//                                .requestMatchers("/product/public/**").permitAll()
+                                .requestMatchers("/product/private/**").hasAuthority("SCOPE_Admin")
                                 .anyRequest()
                                 .authenticated())
                 .oauth2ResourceServer(

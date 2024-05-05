@@ -18,7 +18,7 @@ public class ProductController {
     private ProductService productService;
 
 //    @PreAuthorize("hasAuthority('Admin')")
-//    @Secured({"Admin"})
+    @Secured("Admin")
     @PostMapping("/private/addProduct")
     public ResponseEntity<?> addProduct(@RequestBody ProductRequest productRequest){
         long productId = productService.addProduct(productRequest);
@@ -26,8 +26,8 @@ public class ProductController {
     }
 
 //    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
-    @Secured("ROLE_Admin, ROLE_Customer")
-    @GetMapping("/{id}")
+//    @Secured("ROLE_Admin, ROLE_Customer")
+    @GetMapping("/public/{id}")
     public ResponseEntity<?> getProductId(@PathVariable("id") long id){
         ProductResponse productResponse = productService.getProductById(id);
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
