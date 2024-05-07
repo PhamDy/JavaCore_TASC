@@ -4,6 +4,7 @@ import com.DyPham.kafkatutorial.payload.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -15,6 +16,9 @@ public class JsonKafkaProducer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaProducer.class);
 
+    @Value("${spring.kafka.topic-json.name}")
+    private String topicJsonName;
+
     @Autowired
     private KafkaTemplate<String, User> kafkaTemplate;
 
@@ -24,7 +28,7 @@ public class JsonKafkaProducer {
 
         Message<User> message = MessageBuilder
                 .withPayload(data)
-                .setHeader(KafkaHeaders.TOPIC, "javaguides")
+                .setHeader(KafkaHeaders.TOPIC, topicJsonName)
                 .build();
 
         kafkaTemplate.send(message);
