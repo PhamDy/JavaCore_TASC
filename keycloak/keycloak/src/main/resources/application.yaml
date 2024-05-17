@@ -1,0 +1,16 @@
+server:
+  port: 7075
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/oauthrealm
+          jwk-set-uri: http://localhost:9090/realms/oauthrealm/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: test keycloak
+      principle-attribute: preferred_username
